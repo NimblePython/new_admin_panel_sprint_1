@@ -23,7 +23,7 @@ class UUIDMixin(models.Model):
 
 
 class Genre(UUIDMixin, TimeStampedMixin):
-    name = models.CharField(_('name'), max_length=35)
+    name = models.CharField(_('name'), max_length=35, default=_('not_define'))
     description = models.TextField(_('description'), blank=True)
 
     def __str__(self):

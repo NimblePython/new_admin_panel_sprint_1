@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS content;
+
 CREATE TABLE IF NOT EXISTS content.film_work (
     id uuid PRIMARY KEY,
     title varchar(100) NOT NULL,
