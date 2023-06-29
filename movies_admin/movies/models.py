@@ -31,15 +31,15 @@ class Genre(UUIDMixin, TimeStampedMixin):
 
     class Meta:
         db_table = "content\".\"genre"
-        verbose_name = 'Жанр'
-        verbose_name_plural = 'Жанры'
+        verbose_name = _('genre')
+        verbose_name_plural = _('genres')
 
 
 class Filmwork(UUIDMixin, TimeStampedMixin):
     title = models.CharField(_('title'), max_length=100)
 
     # Для форматированного вывода рейтинга на экран (напр. округленного)
-    @admin.display(description='Рейтинг')
+    @admin.display(description=_('rating'))
     def show_rating(self):
         return self.rating
 
@@ -61,16 +61,16 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
     )
 
     # Создание REFERENCES
-    genres = models.ManyToManyField('Genre', through='GenreFilmwork')
-    persons = models.ManyToManyField('Person', through='PersonFilmwork')
+    genres = models.ManyToManyField('Genre', through='GenreFilmwork', verbose_name=_('genres'))
+    persons = models.ManyToManyField('Person', through='PersonFilmwork', verbose_name=_('persons'))
 
     def __str__(self):
         return self.title
 
     class Meta:
         db_table = "content\".\"film_work"
-        verbose_name = 'Фильм'
-        verbose_name_plural = 'Фильмы'
+        verbose_name = _('movie')
+        verbose_name_plural = _('movies')
 
 
 class GenreFilmwork(UUIDMixin):
@@ -82,8 +82,11 @@ class GenreFilmwork(UUIDMixin):
 
     class Meta:
         db_table = "content\".\"genre_film_work"
-        verbose_name = 'Жанр'
-        verbose_name_plural = 'Жанры'
+        verbose_name = _('genre')
+        verbose_name_plural = _('genres')
+        constraints = [
+            models.UniqueConstraint(fields=['film_work', 'genre'], name='unique_filmwork_genre'),
+        ]
 
 
 class Person(UUIDMixin, TimeStampedMixin):
@@ -94,8 +97,8 @@ class Person(UUIDMixin, TimeStampedMixin):
 
     class Meta:
         db_table = "content\".\"person"
-        verbose_name = 'Актёр'
-        verbose_name_plural = 'Актёры'
+        verbose_name = _('person')
+        verbose_name_plural = _('persons')
 
 
 class PersonFilmwork(UUIDMixin):
@@ -108,5 +111,8 @@ class PersonFilmwork(UUIDMixin):
 
     class Meta:
         db_table = "content\".\"person_film_work"
-        verbose_name = 'Участник'
-        verbose_name_plural = 'Участники'
+        verbose_name = _('person')
+        verbose_name_plural = _('persons')
+        constraints = [
+            models.UniqueConstraint(fields=['film_work', 'person', 'role'], name='unique_filmwork_person_role'),
+        ]
