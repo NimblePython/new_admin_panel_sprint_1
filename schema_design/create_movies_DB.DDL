@@ -42,5 +42,5 @@ CREATE TABLE IF NOT EXISTS content.person_film_work (
     role TEXT NOT NULL,
     created timestamp with time zone
 );
-CREATE INDEX IF NOT EXISTS film_work_person_idx ON content.person_film_work(film_work_id, person_id);
+CREATE UNIQUE INDEX IF NOT EXISTS film_work_person_idx ON content.person_film_work(film_work_id, person_id, role);
 CREATE INDEX IF NOT EXISTS person_film_work_idx ON content.person_film_work(person_id, film_work_id);
