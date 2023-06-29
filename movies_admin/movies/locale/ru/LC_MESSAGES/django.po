@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-26 14:41+0000\n"
+"POT-Creation-Date: 2023-06-29 11:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: movies/apps.py:8
+#: movies/apps.py:8 movies/models.py:73
 msgid "movies"
 msgstr "Фильмотека"
 
@@ -32,44 +32,63 @@ msgstr "Наименование"
 msgid "description"
 msgstr "Описание"
 
+#: movies/models.py:34 movies/models.py:85
+msgid "genre"
+msgstr "Жанр"
+
+#: movies/models.py:35 movies/models.py:86
+msgid "genres"
+msgstr "Жанры"
+
 #: movies/models.py:39
 msgid "title"
 msgstr "Заголовок"
+
+#: movies/models.py:42 movies/models.py:48
+msgid "rating"
+msgstr "Рейтинг"
 
 #: movies/models.py:47
 msgid "creation_date"
 msgstr "Дата создания"
 
-#: movies/models.py:48
-msgid "rating"
-msgstr "Рейтинг"
-
 #: movies/models.py:57
 msgid "type"
 msgstr "Тип"
 
-#: movies/models.py:81 movies/models.py:112
+#: movies/models.py:72
+#, fuzzy
+#| msgid "movies"
+msgid "movie"
+msgstr "Фильмотека"
+
+#: movies/models.py:81 movies/models.py:107
 #, fuzzy
 #| msgid "creation_date"
 msgid "created"
 msgstr "Дата создания"
 
-#: movies/models.py:91
-msgid "male"
-msgstr "мужской"
-
-#: movies/models.py:92
-msgid "female"
-msgstr "женский"
-
-#: movies/models.py:94
+#: movies/models.py:90
 msgid "full_name"
 msgstr "Полное имя"
 
-#: movies/models.py:95
-msgid "gender"
-msgstr "Пол"
+#: movies/models.py:97 movies/models.py:111
+msgid "person"
+msgstr "Участник"
 
-#: movies/models.py:111
+#: movies/models.py:98 movies/models.py:112
+msgid "persons"
+msgstr "Актеры"
+
+#: movies/models.py:106
 msgid "role"
 msgstr "Роль"
+
+#~ msgid "male"
+#~ msgstr "мужской"
+
+#~ msgid "female"
+#~ msgstr "женский"
+
+#~ msgid "gender"
+#~ msgstr "Пол"
