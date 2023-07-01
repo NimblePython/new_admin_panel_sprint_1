@@ -12,9 +12,10 @@ class PersonFilmworkInline(admin.TabularInline):
 
 @admin.register(Filmwork)
 class FilmworkAdmin(admin.ModelAdmin):
-    inlines = (PersonFilmworkInline,
-               GenreFilmworkInline,
-               )
+    inlines = (
+        PersonFilmworkInline,
+        GenreFilmworkInline,
+    )
 
     # Отображение полей в списке
     list_display = ('title', 'type', 'creation_date', 'show_rating',)

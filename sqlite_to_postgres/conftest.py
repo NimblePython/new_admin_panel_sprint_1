@@ -3,7 +3,8 @@ import os
 import sqlite3
 
 from dotenv import load_dotenv
-from contextlib import contextmanager
+from datetime import datetime
+from contextlib import contextmanager, closing
 
 import psycopg2
 from psycopg2.extras import DictCursor
@@ -28,21 +29,17 @@ def load_env():
             'port': port,
             }
 
-"""
-@contextmanager
-def conn_context(db_path: str):
-    conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row
-    yield conn
-    conn.close()
-"""
-
 
 @pytest.fixture(scope="module")
 def lite_conn(load_env):
-    conn = sqlite3.connect(load_env['lite_db_path'])
+    sqlite3.register_converter(
+        "timestamp",
+        lambda x: datetime.fromisoformat(x.decode() + ':00')
+    )
+    conn = sqlite3.connect(load_env['lite_db_path'], detect_types=sqlite3.PARSE_DECLTYPES)
     conn.row_factory = sqlite3.Row
-    return conn
+    yield conn
+    conn.close()
 
 
 @pytest.fixture(scope="module")

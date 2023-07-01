@@ -8,8 +8,8 @@ from django.contrib import admin
 
 
 class TimeStampedMixin(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
@@ -24,7 +24,7 @@ class UUIDMixin(models.Model):
 
 class Genre(UUIDMixin, TimeStampedMixin):
     name = models.CharField(_('name'), max_length=35, default=_('not_define'))
-    description = models.TextField(_('description'), blank=True)
+    description = models.TextField(_('description'), blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -43,11 +43,15 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
     def show_rating(self):
         return self.rating
 
-    description = models.TextField(_('description'), blank=True)
-    creation_date = models.DateField(_('creation_date'), blank=True)
-    rating = models.FloatField(_('rating'), blank=True,
+    description = models.TextField(_('description'), blank=True, null=True)
+    creation_date = models.DateField(_('creation_date'), blank=True, null=True)
+    # file_path = models.FilePathField(_('file_path'), blank=True, null=True)
+    rating = models.FloatField(_('rating'),
+                               blank=True,
+                               null=True,
                                validators=[MinValueValidator(0),
-                                           MaxValueValidator(100)])
+                                           MaxValueValidator(100)]
+                               )
 
     class FilmTypes(models.TextChoices):
         MOVIE = 'movie'
@@ -78,7 +82,7 @@ class GenreFilmwork(UUIDMixin):
     film_work = models.ForeignKey('Filmwork', on_delete=models.CASCADE)
     genre = models.ForeignKey('Genre', on_delete=models.CASCADE)
 
-    created = models.DateTimeField(_('created'), auto_now_add=True)
+    created_at = models.DateTimeField(_('created'), auto_now_add=True)
 
     class Meta:
         db_table = "content\".\"genre_film_work"
@@ -107,7 +111,7 @@ class PersonFilmwork(UUIDMixin):
     person = models.ForeignKey('Person', on_delete=models.CASCADE)
 
     role = models.CharField(_('role'), max_length=35, null=True)
-    created = models.DateTimeField(_('created'), auto_now_add=True)
+    created_at = models.DateTimeField(_('created'), auto_now_add=True)
 
     class Meta:
         db_table = "content\".\"person_film_work"
