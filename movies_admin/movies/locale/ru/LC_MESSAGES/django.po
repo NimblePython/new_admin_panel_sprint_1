@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-01 21:38+0000\n"
+"POT-Creation-Date: 2023-07-04 12:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr "не указано"
 msgid "description"
 msgstr "Описание"
 
-#: movies/models.py:34 movies/models.py:89
+#: movies/models.py:34 movies/models.py:83 movies/models.py:89
 msgid "genre"
 msgstr "Жанр"
 
@@ -56,10 +56,6 @@ msgstr "Рейтинг"
 msgid "creation_date"
 msgstr "Дата создания"
 
-#: movies/models.py:48
-msgid "file_path"
-msgstr "Путь к файлу"
-
 #: movies/models.py:61
 msgid "type"
 msgstr "Тип"
@@ -74,6 +70,10 @@ msgstr "Актеры"
 msgid "movie"
 msgstr "Фильм"
 
+#: movies/models.py:82 movies/models.py:110
+msgid "film"
+msgstr "Кинопроизведение"
+
 #: movies/models.py:85 movies/models.py:114
 #, fuzzy
 #| msgid "creation_date"
@@ -84,7 +84,7 @@ msgstr "Дата создания"
 msgid "full_name"
 msgstr "Полное имя"
 
-#: movies/models.py:104 movies/models.py:118
+#: movies/models.py:104 movies/models.py:111 movies/models.py:118
 msgid "person"
 msgstr "Участник"
 
@@ -92,3 +92,5 @@ msgstr "Участник"
 msgid "role"
 msgstr "Роль"
 
+#~ msgid "file_path"
+#~ msgstr "Путь к файлу"

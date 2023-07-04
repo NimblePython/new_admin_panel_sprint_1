@@ -79,8 +79,8 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
 
 class GenreFilmwork(UUIDMixin):
     # Создание REFERENCES
-    film_work = models.ForeignKey('Filmwork', on_delete=models.CASCADE)
-    genre = models.ForeignKey('Genre', on_delete=models.CASCADE)
+    film_work = models.ForeignKey('Filmwork', verbose_name=_('film'), on_delete=models.CASCADE)
+    genre = models.ForeignKey('Genre', verbose_name=_('genre'), on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(_('created'), auto_now_add=True)
 
@@ -107,8 +107,8 @@ class Person(UUIDMixin, TimeStampedMixin):
 
 class PersonFilmwork(UUIDMixin):
     # Создание REFERENCES
-    film_work = models.ForeignKey('Filmwork', on_delete=models.CASCADE)
-    person = models.ForeignKey('Person', on_delete=models.CASCADE)
+    film_work = models.ForeignKey('Filmwork', verbose_name=_('film'), on_delete=models.CASCADE)
+    person = models.ForeignKey('Person', verbose_name=_('person'), on_delete=models.CASCADE)
 
     role = models.CharField(_('role'), max_length=35, null=True)
     created_at = models.DateTimeField(_('created'), auto_now_add=True)
